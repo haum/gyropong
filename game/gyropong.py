@@ -2,6 +2,7 @@
 
 from math import cos, sin, pi
 import pyglet
+import tools.animators
 
 pyglet.resource.path = ['./resources']
 pyglet.resource.reindex()
@@ -27,12 +28,11 @@ def setPaddle(sPaddle, angle):
     ss = min(sw, sh) * 0.45
     sPaddle.update(x=sw/2+ss*cos(angle), y=sh/2+ss*sin(angle), rotation=180-angle*180/pi)
 
-t = 0
+a = tools.animators.LinearAnimator(duration=10, looped=True, run=True)
 def update(dt):
-    global t
-    t += dt
-    setPaddle(sPaddle1, 0.4*t)
-    setPaddle(sPaddle2, pi+0.4*t)
+    a.update(dt)
+    setPaddle(sPaddle1, a.value() * 2 * pi)
+    setPaddle(sPaddle2, pi + a.value() * 2 * pi)
 pyglet.clock.schedule_interval(update, 1/60.0)
 
 @window.event
