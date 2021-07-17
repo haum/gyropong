@@ -118,4 +118,76 @@
        cy="135.46666"
        r="121.92" />
   </g>
+  <g
+     id="g1871"
+     transform="matrix(1.1490485,-1.1490485,1.1490485,1.1490485,201.39757,-161.15461)"
+     style="stroke-width:0.615384">
+    <rect
+       style="fill:#ffffff;stroke-width:0.244232;stop-color:#000000"
+       id="use1284"
+       width="21.166666"
+       height="21.166666"
+       x="-168.34525"
+       y="-4.6254649"
+       ry="0" />
+    <path
+       id="use1302"
+       style="fill:#000000;stroke-width:0.923077;stop-color:#000000"
+       d="M 65.402344,47.884766 V 107.88477 H 125.40234 V 47.884766 Z m 10,10 10,0 v 10 h 10 l 0,-10 h 19.999996 l 0,30 -10,0 0,10 -9.999996,0 0,-10 0,-10 h -10 v -10 h -10 z m 20,20 9.999996,0 v -10 h -9.999996 z"
+       transform="matrix(0.26458333,0,0,0.26458333,-183.00382,-14.649363)" />
+  </g>
+  <g
+     id="g2003"
+     transform="matrix(1.1490485,1.1490485,-1.1490485,1.1490485,432.08789,201.39759)"
+     style="stroke-width:0.615385">
+    <rect
+       style="fill:#ffffff;stroke-width:0.244231;stop-color:#000000"
+       id="rect1875"
+       width="21.166666"
+       height="21.166666"
+       x="-168.34526"
+       y="-4.6254649"
+       ry="0" />
+    <path
+       id="rect1893"
+       style="fill:#000000;stroke-width:0.923079;stop-color:#000000"
+       d="m 813.30859,47.884766 v 60.000004 h 60 V 47.884766 Z m 10,20 h 40 v 20 h -10 v 10 h -10 v -10 h 10 v -10 h -20 v 20 h -10 z"
+       transform="matrix(0.26458333,0,0,0.26458333,-380.88752,-14.649363)" />
+  </g>
+  <g
+     id="g2135"
+     transform="matrix(-1.1490485,-1.1490485,1.1490485,-1.1490485,-161.15463,69.53568)"
+     style="stroke-width:0.615385">
+    <rect
+       style="fill:#ffffff;stroke-width:0.244231;stop-color:#000000"
+       id="rect2007"
+       width="21.166666"
+       height="21.166666"
+       x="-168.34526"
+       y="-4.6254649"
+       ry="0" />
+    <path
+       id="rect2025"
+       style="fill:#000000;stroke-width:0.923079;stop-color:#000000"
+       d="m 65.402344,871.38281 v 60 h 59.999996 v -60 z m 10,10 h 10 v 20 h 10 v 10 h 9.999996 v 10 H 85.402344 v -20 h -10 z m 29.999996,0 h 10 v 20 h -10 z"
+       transform="matrix(0.26458333,0,0,0.26458333,-183.00382,-232.53302)" />
+  </g>
+  <g
+     id="g2267"
+     transform="matrix(-1.1490485,1.1490485,-1.1490485,-1.1490485,69.53568,432.08789)"
+     style="stroke-width:0.615385">
+    <rect
+       style="fill:#ffffff;stroke-width:0.244231;stop-color:#000000"
+       id="rect2139"
+       width="21.166666"
+       height="21.166666"
+       x="-168.34526"
+       y="-4.6254649"
+       ry="0" />
+    <path
+       id="rect2157"
+       style="fill:#000000;stroke-width:0.923079;stop-color:#000000"
+       d="m 813.30859,871.38281 v 60 h 60 v -60 z m 30,10 h 20 v 20 h -10 v 10 h 10 v 10 h -10 v -10 h -10 v 10 h -20 v -10 h 20 z"
+       transform="matrix(0.26458333,0,0,0.26458333,-380.88752,-232.53302)" />
+  </g>
 </svg>
