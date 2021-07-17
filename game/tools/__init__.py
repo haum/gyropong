@@ -1,1 +1,3 @@
-gamestate = {}
+gamestate = {
+        'sprites': {}
+}
