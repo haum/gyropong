@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
 
+import argparse
 import pyglet
 import sprites.paddle
 import tools.game_manager
+import tools.camera
 from tools import gamestate
+
+parser = argparse.ArgumentParser(description='GyroPong')
+parser.add_argument('-c --camera', dest='camera', default=0,
+        help='OpenCV camera id')
+parser.add_argument('-d --debug', dest='debug',
+        action=argparse.BooleanOptionalAction,
+        help='Display camera debug window')
+gamestate['args'] = parser.parse_args()
 
 pyglet.resource.path = ['./resources']
 pyglet.resource.reindex()
@@ -31,9 +41,15 @@ gamestate['sprites']['paddle2'] = sPaddle2
 gm = tools.game_manager.GameManager()
 pyglet.clock.schedule_interval(lambda dt: gm.animate(dt), 1/60.0)
 
+cam = tools.camera.ARUcoCam()
+cam.start()
+gamestate['cam'] = cam
+
 @window.event
 def on_draw():
     gm.draw()
 
 if __name__ == '__main__':
     pyglet.app.run()
+    cam.stop()
+    cam.join()
