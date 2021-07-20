@@ -14,14 +14,17 @@ class Animator:
         self.updown = b
 
     def start(self):
-        self.run = True
-        self.t = 0
+        self.reset()
+        self.resume()
 
     def stop(self):
         self.run = False
 
     def resume(self):
         self.run = True
+
+    def reset(self):
+        self.t = 0
 
     def running(self):
         return self.run
