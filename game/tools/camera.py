@@ -44,6 +44,7 @@ class ARUcoCam(threading.Thread):
                 cv2.destroyAllWindows()
 
             ret, frame = cap.read()
+            corners = None
             if ret:
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 corners, ids, _ = aruco.detectMarkers(gray, self.aruco_dict)
@@ -85,7 +86,10 @@ class ARUcoCam(threading.Thread):
             ]
 
             if self.debug:
-                frame = aruco.drawDetectedMarkers(frame, corners)
+                if corners:
+                    frame = aruco.drawDetectedMarkers(frame, corners)
+                else:
+                    frame = np.zeros((480, 640, 3))
                 for a in anchors:
                     if a:
                         frame = cv2.circle(frame, tuple(map(int, a)), 5, (255,0,0), -1)
