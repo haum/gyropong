@@ -103,9 +103,9 @@ class ARUcoCam(threading.Thread):
                 if anchor0:
                     frame = cv2.circle(frame, tuple(map(int, anchor0)), 4, (0,0,255), -1)
                 if players[0]:
-                    frame = cv2.circle(frame, tuple(map(int, players[0])), 4, (0,255,255), -1)
+                    frame = cv2.circle(frame, tuple(map(int, players[0])), 4, (255,255,0), -1)
                 if players[1]:
-                    frame = cv2.circle(frame, tuple(map(int, players[1])), 4, (255,255,0), -1)
+                    frame = cv2.circle(frame, tuple(map(int, players[1])), 4, (0,255,255), -1)
                 frame = cv2.putText(
                     frame,
                     str(angles[0] * 180 / pi) if angles[0] else 'None',
