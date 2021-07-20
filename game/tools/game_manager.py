@@ -7,6 +7,7 @@ class GameManager:
             'wait': screens.WaitPlayersScreen(),
         }
         self.screen = self.screens['wait']
+        self.screen.enter()
 
     def animate(self, dt):
         self.screen.animate(dt)
@@ -14,3 +15,9 @@ class GameManager:
     def draw(self):
         gamestate['window'].clear()
         self.screen.draw()
+
+    def change_screen(self, name):
+        if name in self.screens:
+            self.screen.exit()
+            self.screen = self.screens[name]
+            self.screen.enter()
