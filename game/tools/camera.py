@@ -22,7 +22,14 @@ class ARUcoCam(threading.Thread):
         self.running = True
 
     def run(self):
-        cap = cv2.VideoCapture(self.cam)
+        retryCap = True
+        while retryCap and self.running:
+            cap = cv2.VideoCapture(self.cam)
+            if cap.isOpened():
+                retryCap = False
+            else:
+                print('Camera not opened')
+                time.sleep(2)
         anchors = [None, None, None, None]
         anchor0 = None
         players = [None, None]
