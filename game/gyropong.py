@@ -39,6 +39,7 @@ sPaddle2.color = (255, 255, 0)
 gamestate['sprites']['paddle2'] = sPaddle2
 
 gm = tools.game_manager.GameManager()
+gamestate['game'] = gm
 pyglet.clock.schedule_interval(lambda dt: gm.animate(dt), 1/60.0)
 
 cam = tools.camera.ARUcoCam()

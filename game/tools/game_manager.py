@@ -5,11 +5,13 @@ class GameManager:
     def __init__(self):
         self.screens = {
             'wait': screens.WaitPlayersScreen(),
+            'match': screens.Match(),
         }
         self.screen = self.screens['wait']
         self.screen.enter()
 
     def animate(self, dt):
+        gamestate['angles'] = gamestate['cam'].get_angles()
         self.screen.animate(dt)
 
     def draw(self):
