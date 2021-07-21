@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser(description='GyroPong')
 parser.add_argument('-c --camera', dest='camera', default=0,
         help='OpenCV camera id')
 parser.add_argument('-d --debug', dest='debug',
-        action=argparse.BooleanOptionalAction,
+        default=False, action='store_true',
         help='Display camera debug window')
 gamestate['args'] = parser.parse_args()
 
