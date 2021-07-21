@@ -93,7 +93,7 @@ class ARUcoCam(threading.Thread):
             ]
 
             if self.debug:
-                if corners:
+                if corners != None:
                     frame = aruco.drawDetectedMarkers(frame, corners)
                 else:
                     frame = np.zeros((480, 640, 3))
