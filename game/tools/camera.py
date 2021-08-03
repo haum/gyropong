@@ -88,8 +88,8 @@ class ARUcoCam(threading.Thread):
                     players[1] = None
 
             angles = [
-                atan2(players[0][1] - anchor0[1], players[0][0] - anchor0[0]) if anchor0 and players[0] else None,
-                atan2(players[1][1] - anchor0[1], players[1][0] - anchor0[0]) if anchor0 and players[1] else None
+                -atan2(players[0][1] - anchor0[1], players[0][0] - anchor0[0]) if anchor0 and players[0] else None,
+                -atan2(players[1][1] - anchor0[1], players[1][0] - anchor0[0]) if anchor0 and players[1] else None
             ]
 
             if self.debug:
