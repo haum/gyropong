@@ -15,3 +15,6 @@ class Paddle(pyglet.sprite.Sprite):
             rotation = 180-angle*180/pi
         )
 
+    def drive(self, angle, dt):
+        if not angle: return
+        self.set_angle(angle)
