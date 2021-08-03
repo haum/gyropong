@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="20"
+   height="20"
+   viewBox="0 0 5.2916666 5.2916666"
+   version="1.1"
+   id="svg5"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient1158">
+      <stop
+         style="stop-color:#2d3a46;stop-opacity:1"
+         offset="0"
+         id="stop1154" />
+      <stop
+         style="stop-color:#000000;stop-opacity:1"
+         offset="1"
+         id="stop1156" />
+    </linearGradient>
+    <radialGradient
+       xlink:href="#linearGradient1158"
+       id="radialGradient1160"
+       cx="483.12299"
+       cy="406.46854"
+       fx="483.12299"
+       fy="406.46854"
+       r="512"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.18098944,0.18098948,-0.1883283,0.18832838,124.57357,-28.490113)" />
+    <filter
+       height="1.0026464"
+       y="-0.0013232433"
+       width="1.0026464"
+       x="-0.0013232433"
+       style="color-interpolation-filters:sRGB"
+       id="filter2265">
+      <feTurbulence
+         numOctaves="5"
+         seed="0"
+         type="fractalNoise"
+         baseFrequency="0.1"
+         result="result1"
+         id="feTurbulence2259" />
+      <feGaussianBlur
+         stdDeviation="2"
+         result="result2"
+         id="feGaussianBlur2261" />
+      <feDisplacementMap
+         scale="50"
+         yChannelSelector="B"
+         xChannelSelector="R"
+         in="SourceGraphic"
+         in2="result2"
+         id="feDisplacementMap2263" />
+    </filter>
+    <filter
+       width="1.0000938"
+       height="1.0001885"
+       y="-9.4228039e-05"
+       x="-4.691412e-05"
+       style="color-interpolation-filters:sRGB"
+       id="filter2527">
+      <feGaussianBlur
+         stdDeviation="0.01"
+         result="result1"
+         id="feGaussianBlur2515" />
+      <feBlend
+         in2="result1"
+         result="fbSourceGraphic"
+         mode="multiply"
+         id="feBlend2517" />
+      <feTurbulence
+         baseFrequency="0.8"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3"
+         result="result3"
+         id="feTurbulence2519" />
+      <feDisplacementMap
+         in="fbSourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="50"
+         result="result2"
+         in2="result3"
+         id="feDisplacementMap2521" />
+      <feMorphology
+         radius="1"
+         operator="dilate"
+         result="result4"
+         id="feMorphology2523" />
+      <feBlend
+         mode="screen"
+         in2="result2"
+         id="feBlend2525" />
+    </filter>
+  </defs>
+  <circle
+     style="fill:#ffffff;stroke-width:1.5;stop-color:#000000"
+     id="path873"
+     cx="2.6458333"
+     cy="2.6458333"
+     r="2.6458333" />
+</svg>

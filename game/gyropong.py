@@ -3,6 +3,7 @@
 import argparse
 import pyglet
 import sprites.paddle
+import sprites.ball
 import tools.game_manager
 import tools.camera
 from tools import gamestate
@@ -37,6 +38,12 @@ gamestate['sprites']['paddle1'] = sPaddle1
 sPaddle2 = sprites.paddle.Paddle(img=imgPaddle)
 sPaddle2.color = (255, 255, 0)
 gamestate['sprites']['paddle2'] = sPaddle2
+
+imgBall = pyglet.resource.image("ball.png")
+imgBall.anchor_x = imgBall.width //2
+imgBall.anchor_y = imgBall.height //2
+sBall = sprites.ball.Ball(img=imgBall, subpixel=True)
+gamestate['sprites']['ball'] = sBall
 
 gm = tools.game_manager.GameManager()
 gamestate['game'] = gm
