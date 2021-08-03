@@ -2,16 +2,23 @@ import pyglet
 from .screen import Screen
 import tools.animators
 from tools import gamestate
+from random import random
+from math import cos, sin, pi
 
 class Match(Screen):
     def __init__(self):
         self.timer_quit = tools.animators.LinearAnimator(duration=10)
+        self.ballspeed = tools.animators.LinearAnimator(duration=120, run=True)
 
     def enter(self):
         self.timer_quit.start()
+        self.playing = False
 
     def animate(self, dt):
+        ball = gamestate['sprites']['ball']
+        ball.animate(dt)
         self.timer_quit.update(dt)
+        self.ballspeed.update(dt)
 
         # Drive paddles
         p1 = gamestate['sprites']['paddle1']
@@ -34,5 +41,19 @@ class Match(Screen):
         if self.timer_quit.value() == 1:
            gamestate['game'].change_screen('wait')
 
+        # Start ball
+        if not self.playing and p1here and p2here:
+            self.playing = True
+            ball.reset()
+            ball.color = (255, 255, 255)
+            a = random() * 2 * pi
+            ball.set_speed((1+5*self.ballspeed.value())*cos(a), (1+5*self.ballspeed.value())*sin(a))
+
+        # Ball out
+        sw, sh = gamestate['window'].width, gamestate['window'].height
+        ss = min(sw, sh) * 0.48
+        if (ball.position[0] - sw/2)**2 + (ball.position[1] - sh/2)**2 > ss * ss:
+            self.playing = False
+
     def draw(self):
-        super().draw(['bg', 'paddle1', 'paddle2'])
+        super().draw(['bg', 'paddle1', 'paddle2', 'ball'])
