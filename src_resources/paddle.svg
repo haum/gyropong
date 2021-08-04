@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="29.776987"
-   height="299.99997"
-   viewBox="0 0 7.8784943 79.374994"
+   width="28.354912"
+   height="224.73924"
+   viewBox="0 0 7.5022369 59.462259"
    version="1.1"
    id="svg5354"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -20,7 +20,7 @@
        x2="13.411377"
        y2="133.92342"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.78557661,0,0,1.1608467,-30.072432,-74.407043)" />
+       gradientTransform="matrix(0.78557659,0,0,1.1608467,-10.266832,-126.29627)" />
     <linearGradient
        id="linearGradient4839">
       <stop
@@ -33,12 +33,12 @@
          id="stop4837" />
     </linearGradient>
   </defs>
-  <g
-     id="layer1"
-     transform="translate(20.17922,-41.957918)">
-    <path
-       style="opacity:1;fill:url(#linearGradient3793);fill-opacity:1;stroke:#e6e6e6;stroke-width:0.746979;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
-       id="path3112"
-       d="m -19.80573,42.331407 a 53.209717,78.628014 0 0 1 0,78.628013" />
-  </g>
+  <path
+     id="path3112"
+     style="fill:url(#linearGradient3793);fill-opacity:1;stroke:none;stroke-width:0.74698;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
+     d="M 3.2731851,0.3734898 A 121.92,121.92 0 0 0 0,20.305606 V 39.105493 A 121.92,121.92 0 0 0 3.2866209,59.088768 53.209716,78.628014 0 0 0 3.2731851,0.3734898 Z" />
+  <path
+     id="path1251"
+     style="fill:none;fill-opacity:1;stroke:#e6e6e6;stroke-width:0.74698;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
+     d="M 3.2866209,59.088768 C 8.4130759,40.248699 8.4082613,19.208429 3.2731851,0.3734898" />
 </svg>
