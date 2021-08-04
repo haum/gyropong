@@ -14,13 +14,26 @@ parser.add_argument('-c --camera', dest='camera', default=0,
 parser.add_argument('-d --debug', dest='debug',
         default=False, action='store_true',
         help='Display camera debug window')
+parser.add_argument('-f --fullscreen', dest='fullscreen',
+        default=False, action='store_true',
+        help='Display at fullscreen')
+parser.add_argument('-s --screen', dest='screen', default=0,
+        help='Screen id')
 gamestate['args'] = parser.parse_args()
 
 pyglet.resource.path = ['./resources']
 pyglet.resource.reindex()
 
-window = pyglet.window.Window(1024, 1024)
+screen = None
+if gamestate['args'].screen:
+    screens = display.get_screens()
+    if gamestate['args'].screen < len(screens):
+        screen = screens[gamestate['args'].screen]
+
+window = pyglet.window.Window(1024, 1024, screen=screen, resizable=True)
 window.set_caption('GyroPong')
+if gamestate['args'].fullscreen:
+    window.set_fullscreen(True)
 gamestate['window'] = window
 
 imgBg = pyglet.resource.image("bg.jpg")
@@ -56,6 +69,19 @@ gamestate['cam'] = cam
 @window.event
 def on_draw():
     gm.draw()
+
+@window.event
+def on_resize(width, height):
+    scale = min(width, height)/min(imgBg.width, imgBg.height)
+    sBg.update(x=width//2, y=height//2, scale=scale)
+    sPaddle1.scale = scale
+    sPaddle2.scale = scale
+    sBall.scale = scale
+
+@window.event
+def on_key_press(symbol, modifiers):
+    if symbol == ord('f'):
+        window.set_fullscreen(not window.fullscreen)
 
 if __name__ == '__main__':
     pyglet.app.run()
