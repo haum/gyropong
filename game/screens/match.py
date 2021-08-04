@@ -3,7 +3,7 @@ from .screen import Screen
 import tools.animators
 from tools import gamestate
 from random import random
-from math import cos, sin, pi
+from math import pi
 
 class Match(Screen):
     def __init__(self):
@@ -47,7 +47,7 @@ class Match(Screen):
             ball.reset()
             ball.color = (255, 255, 255)
             a = random() * 2 * pi
-            ball.set_speed((1+5*self.ballspeed.value())*cos(a), (1+5*self.ballspeed.value())*sin(a))
+            ball.set_speed(a, 50+300*self.ballspeed.value())
 
         # Ball out
         sw, sh = gamestate['window'].width, gamestate['window'].height
