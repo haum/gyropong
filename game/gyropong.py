@@ -58,6 +58,9 @@ imgBall.anchor_y = imgBall.height //2
 sBall = sprites.ball.Ball(img=imgBall, subpixel=True)
 gamestate['sprites']['ball'] = sBall
 
+if not gamestate['args'].debug: # Sound strangely interfere with the debug window, so do not load it when enabled
+    gamestate['pingsound'] = pyglet.resource.media('pingsound.ogg', streaming=False)
+
 gm = tools.game_manager.GameManager()
 gamestate['game'] = gm
 pyglet.clock.schedule_interval(lambda dt: gm.animate(dt), 1/60.0)

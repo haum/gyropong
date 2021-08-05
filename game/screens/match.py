@@ -76,6 +76,8 @@ class Match(Screen):
                 p = p2
 
             if p:
+                if 'pingsound' in gamestate:
+                    gamestate['pingsound'].play()
                 ball.set_speed(p.check_ball(), self.calcspeed())
                 ball.color = p.color
 
