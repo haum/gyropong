@@ -8,14 +8,14 @@ from math import pi
 class Match(Screen):
     def __init__(self):
         self.timer_quit = tools.animators.LinearAnimator(duration=10)
-        self.ballspeed = tools.animators.LinearAnimator(duration=120, run=True)
+        self.ballspeed = tools.animators.LinearAnimator(duration=30, run=True)
 
     def enter(self):
         self.timer_quit.start()
         self.playing = False
 
     def calcspeed(self):
-        return 50 + 300 * self.ballspeed.value()
+        return 100 + 300 * self.ballspeed.value()
 
     def animate(self, dt):
         ball = gamestate['sprites']['ball']
