@@ -14,6 +14,9 @@ class Match(Screen):
         self.timer_quit.start()
         self.playing = False
 
+    def calcspeed(self):
+        return 50 + 300 * self.ballspeed.value()
+
     def animate(self, dt):
         ball = gamestate['sprites']['ball']
         ball.animate(dt)
@@ -44,16 +47,37 @@ class Match(Screen):
         # Start ball
         if not self.playing and p1here and p2here:
             self.playing = True
+            self.ballspeed.reset()
+            self.ballspeed.start()
             ball.reset()
             ball.color = (255, 255, 255)
             a = random() * 2 * pi
-            ball.set_speed(a, 50+300*self.ballspeed.value())
+            ball.set_speed(a, self.calcspeed())
 
         # Ball out
         sw, sh = gamestate['window'].width, gamestate['window'].height
         ss = min(sw, sh) * 0.48
         if (ball.position[0] - sw/2)**2 + (ball.position[1] - sh/2)**2 > ss * ss:
             self.playing = False
+
+        # Check pad touch
+        if self.playing:
+            p1ball = p1.check_ball()
+            p2ball = p2.check_ball()
+            p = None
+            if p1ball != None and p2ball != None:
+                if random() < 0.5:
+                    p = p1
+                else:
+                    p = p2
+            elif p1ball != None:
+                p = p1
+            elif p2ball != None:
+                p = p2
+
+            if p:
+                ball.set_speed(p.check_ball(), self.calcspeed())
+                ball.color = p.color
 
     def draw(self):
         super().draw(['bg', 'paddle1', 'paddle2', 'ball'])
