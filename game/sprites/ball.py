@@ -21,4 +21,4 @@ class Ball(pyglet.sprite.Sprite):
         self.xr += dt * self.speed * cos(self.angle)
         self.yr += dt * self.speed * sin(self.angle)
         sw, sh = gamestate['window'].width, gamestate['window'].height
-        self.update(sw/2 + self.xr, sh/2 + self.yr)
+        self.update(sw/2 + self.xr * self.scale, sh/2 + self.yr * self.scale)
