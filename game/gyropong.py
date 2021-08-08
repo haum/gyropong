@@ -17,7 +17,8 @@ parser.add_argument('-d --debug', dest='debug',
 parser.add_argument('-f --fullscreen', dest='fullscreen',
         default=False, action='store_true',
         help='Display at fullscreen')
-parser.add_argument('-s --screen', dest='screen', default=0,
+parser.add_argument('-s --screen', dest='screen',
+        default=0, type=int,
         help='Screen id')
 gamestate['args'] = parser.parse_args()
 
@@ -26,7 +27,7 @@ pyglet.resource.reindex()
 
 screen = None
 if gamestate['args'].screen:
-    screens = display.get_screens()
+    screens = pyglet.canvas.get_display().get_screens()
     if gamestate['args'].screen < len(screens):
         screen = screens[gamestate['args'].screen]
 
