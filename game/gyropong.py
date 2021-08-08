@@ -46,10 +46,10 @@ gamestate['sprites']['bg'] = sBg
 imgPaddle = pyglet.resource.image("paddle.png")
 imgPaddle.anchor_x = 0
 imgPaddle.anchor_y = imgPaddle.height //2
-sPaddle1 = sprites.paddle.Paddle(img=imgPaddle)
+sPaddle1 = sprites.paddle.Paddle(img=imgPaddle, subpixel=True)
 sPaddle1.color = (0, 255, 255)
 gamestate['sprites']['paddle1'] = sPaddle1
-sPaddle2 = sprites.paddle.Paddle(img=imgPaddle)
+sPaddle2 = sprites.paddle.Paddle(img=imgPaddle, subpixel=True)
 sPaddle2.color = (255, 255, 0)
 gamestate['sprites']['paddle2'] = sPaddle2
 
