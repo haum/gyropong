@@ -33,6 +33,7 @@ class ARUcoCam(threading.Thread):
         anchors = [None, None, None, None]
         anchor0 = None
         players = [None, None]
+        foundtime = [0, 0]
         if self.debug:
             def evt(event, x, y, flags, userdata):
                 if event == cv2.EVENT_LBUTTONDOWN:
@@ -69,10 +70,12 @@ class ARUcoCam(threading.Thread):
                         if i == 10:
                             players[0] = center
                             found[0] = True
+                            foundtime[0] = time.time()
                             self.forced[0] = False
                         if i == 34:
                             players[1] = center
                             found[1] = True
+                            foundtime[1] = time.time()
                             self.forced[1] = False
                     cx, cy, n = 0, 0, 0
                     for p in anchors:
@@ -82,9 +85,9 @@ class ARUcoCam(threading.Thread):
                             n += 1
                     if n:
                         anchor0 = (cx/n, cy/n)
-                if not found[0] and not self.forced[0]:
+                if not found[0] and not self.forced[0] and time.time() - foundtime[0] > 0.2:
                     players[0] = None
-                if not found[1] and not self.forced[1]:
+                if not found[1] and not self.forced[1] and time.time() - foundtime[1] > 0.2:
                     players[1] = None
 
             angles = [
