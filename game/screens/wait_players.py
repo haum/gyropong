@@ -34,5 +34,5 @@ class WaitPlayersScreen(Screen):
            gamestate['game'].change_screen('match')
 
     def draw(self):
-        super().draw(['bg', 'paddle1', 'paddle2'])
+        super().draw(['bg', 'board_tags', 'paddle1', 'paddle2'])
 

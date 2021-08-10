@@ -43,6 +43,12 @@ imgBg.anchor_y = imgBg.height // 2
 sBg = pyglet.sprite.Sprite(img=imgBg, x=window.width//2, y=window.height//2)
 gamestate['sprites']['bg'] = sBg
 
+imgBoardTags = pyglet.resource.image("board_tags.png")
+imgBoardTags.anchor_x = imgBoardTags.width // 2
+imgBoardTags.anchor_y = imgBoardTags.height // 2
+sBoardTags = pyglet.sprite.Sprite(img=imgBoardTags, x=window.width//2, y=window.height//2)
+gamestate['sprites']['board_tags'] = sBoardTags
+
 imgPaddle = pyglet.resource.image("paddle.png")
 imgPaddle.anchor_x = 0
 imgPaddle.anchor_y = imgPaddle.height //2
@@ -78,6 +84,7 @@ def on_draw():
 def on_resize(width, height):
     scale = min(width, height)/min(imgBg.width, imgBg.height)
     sBg.update(x=width//2, y=height//2, scale=scale)
+    sBoardTags.update(x=width//2, y=height//2, scale=scale)
     sPaddle1.scale = scale
     sPaddle2.scale = scale
     sBall.scale = scale

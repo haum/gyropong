@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1024"
+   height="1024"
+   viewBox="0 0 270.93333 270.93333"
+   version="1.1"
+   id="svg5"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient1158">
+      <stop
+         style="stop-color:#2d3a46;stop-opacity:1"
+         offset="0"
+         id="stop1154" />
+      <stop
+         style="stop-color:#000000;stop-opacity:1"
+         offset="1"
+         id="stop1156" />
+    </linearGradient>
+    <radialGradient
+       xlink:href="#linearGradient1158"
+       id="radialGradient1160"
+       cx="483.12299"
+       cy="406.46854"
+       fx="483.12299"
+       fy="406.46854"
+       r="512"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.18098944,0.18098948,-0.1883283,0.18832838,124.57357,-28.490113)" />
+    <filter
+       height="1.0026464"
+       y="-0.0013232433"
+       width="1.0026464"
+       x="-0.0013232433"
+       style="color-interpolation-filters:sRGB"
+       id="filter2265">
+      <feTurbulence
+         numOctaves="5"
+         seed="0"
+         type="fractalNoise"
+         baseFrequency="0.1"
+         result="result1"
+         id="feTurbulence2259" />
+      <feGaussianBlur
+         stdDeviation="2"
+         result="result2"
+         id="feGaussianBlur2261" />
+      <feDisplacementMap
+         scale="50"
+         yChannelSelector="B"
+         xChannelSelector="R"
+         in="SourceGraphic"
+         in2="result2"
+         id="feDisplacementMap2263" />
+    </filter>
+    <filter
+       width="1.0000938"
+       height="1.0001885"
+       y="-9.4228039e-05"
+       x="-4.691412e-05"
+       style="color-interpolation-filters:sRGB"
+       id="filter2527">
+      <feGaussianBlur
+         stdDeviation="0.01"
+         result="result1"
+         id="feGaussianBlur2515" />
+      <feBlend
+         in2="result1"
+         result="fbSourceGraphic"
+         mode="multiply"
+         id="feBlend2517" />
+      <feTurbulence
+         baseFrequency="0.8"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3"
+         result="result3"
+         id="feTurbulence2519" />
+      <feDisplacementMap
+         in="fbSourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="50"
+         result="result2"
+         in2="result3"
+         id="feDisplacementMap2521" />
+      <feMorphology
+         radius="1"
+         operator="dilate"
+         result="result4"
+         id="feMorphology2523" />
+      <feBlend
+         mode="screen"
+         in2="result2"
+         id="feBlend2525" />
+    </filter>
+  </defs>
+  <g
+     id="g1871"
+     transform="matrix(1.1490485,-1.1490485,1.1490485,1.1490485,201.39757,-161.1546)"
+     style="stroke-width:0.615384">
+    <rect
+       style="fill:#ffffff;stroke-width:0.244232;stop-color:#000000"
+       id="use1284"
+       width="21.166666"
+       height="21.166666"
+       x="-168.34525"
+       y="-4.6254649"
+       ry="0" />
+    <path
+       id="use1302"
+       style="fill:#000000;stroke-width:0.923077;stop-color:#000000"
+       d="M 65.402344,47.884766 V 107.88477 H 125.40234 V 47.884766 Z m 10,10 h 10 v 10 h 10 v -10 h 19.999996 v 30 h -10 v 10 h -9.999996 v -10 -10 h -10 v -10 h -10 z m 20,20 h 9.999996 v -10 h -9.999996 z"
+       transform="matrix(0.26458333,0,0,0.26458333,-183.00382,-14.649363)" />
+  </g>
+  <g
+     id="g2003"
+     transform="matrix(1.1490485,1.1490485,-1.1490485,1.1490485,432.08789,201.3976)"
+     style="stroke-width:0.615385">
+    <rect
+       style="fill:#ffffff;stroke-width:0.244231;stop-color:#000000"
+       id="rect1875"
+       width="21.166666"
+       height="21.166666"
+       x="-168.34526"
+       y="-4.6254649"
+       ry="0" />
+    <path
+       id="rect1893"
+       style="fill:#000000;stroke-width:0.923079;stop-color:#000000"
+       d="m 813.30859,47.884766 v 60.000004 h 60 V 47.884766 Z m 10,20 h 40 v 20 h -10 v 10 h -10 v -10 h 10 v -10 h -20 v 20 h -10 z"
+       transform="matrix(0.26458333,0,0,0.26458333,-380.88752,-14.649363)" />
+  </g>
+  <g
+     id="g2135"
+     transform="matrix(-1.1490485,-1.1490485,1.1490485,-1.1490485,-161.15463,69.535691)"
+     style="stroke-width:0.615385">
+    <rect
+       style="fill:#ffffff;stroke-width:0.244231;stop-color:#000000"
+       id="rect2007"
+       width="21.166666"
+       height="21.166666"
+       x="-168.34526"
+       y="-4.6254649"
+       ry="0" />
+    <path
+       id="rect2025"
+       style="fill:#000000;stroke-width:0.923079;stop-color:#000000"
+       d="m 65.402344,871.38281 v 60 h 59.999996 v -60 z m 10,10 h 10 v 20 h 10 v 10 h 9.999996 v 10 H 85.402344 v -20 h -10 z m 29.999996,0 h 10 v 20 h -10 z"
+       transform="matrix(0.26458333,0,0,0.26458333,-183.00382,-232.53302)" />
+  </g>
+  <g
+     id="g2267"
+     transform="matrix(-1.1490485,1.1490485,-1.1490485,-1.1490485,69.53568,432.0879)"
+     style="stroke-width:0.615385">
+    <rect
+       style="fill:#ffffff;stroke-width:0.244231;stop-color:#000000"
+       id="rect2139"
+       width="21.166666"
+       height="21.166666"
+       x="-168.34526"
+       y="-4.6254649"
+       ry="0" />
+    <path
+       id="rect2157"
+       style="fill:#000000;stroke-width:0.923079;stop-color:#000000"
+       d="m 813.30859,871.38281 v 60 h 60 v -60 z m 30,10 h 20 v 20 h -10 v 10 h 10 v 10 h -10 v -10 h -10 v 10 h -20 v -10 h 20 z"
+       transform="matrix(0.26458333,0,0,0.26458333,-380.88752,-232.53302)" />
+  </g>
+</svg>
