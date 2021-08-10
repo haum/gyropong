@@ -19,7 +19,12 @@ class Paddle(pyglet.sprite.Sprite):
 
     def drive(self, angle, dt):
         if not angle: return
-        self.set_angle(angle)
+        da = angle - self.angle
+        da = (da + pi) % (2 * pi) - pi
+        al = 0.1
+        if da > al: angle = self.angle + al
+        elif da < -al: angle = self.angle - al
+        self.set_angle(angle % (2 * pi))
 
     def check_ball(self):
         ball = gamestate['sprites']['ball']
