@@ -72,7 +72,8 @@ sBall = sprites.ball.Ball(img=imgBall, subpixel=True)
 gamestate['sprites']['ball'] = sBall
 
 if not gamestate['args'].debug: # Sound strangely interfere with the debug window, so do not load it when enabled
-    gamestate['pingsound'] = pyglet.resource.media('pingsound.ogg', streaming=False)
+    gamestate['sounds']['ping'] = pyglet.resource.media('ping.ogg', streaming=False)
+    gamestate['sounds']['end'] = pyglet.resource.media('end.ogg', streaming=False)
 
 gm = tools.game_manager.GameManager()
 gamestate['game'] = gm

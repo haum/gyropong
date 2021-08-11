@@ -1,3 +1,4 @@
 gamestate = {
-        'sprites': {}
+        'sprites': {},
+        'sounds': {},
 }

@@ -59,6 +59,9 @@ class Match(Screen):
         ss = min(sw, sh) * 0.48
         if (ball.position[0] - sw/2)**2 + (ball.position[1] - sh/2)**2 > ss * ss:
             self.playing = False
+            if not(ball.color[0] == 255 and ball.color[1] == 255 and ball.color[2] == 255):
+                if 'end' in gamestate['sounds']:
+                    gamestate['sounds']['end'].play()
 
         # Check pad touch
         if self.playing:
@@ -76,8 +79,8 @@ class Match(Screen):
                 p = p2
 
             if p:
-                if 'pingsound' in gamestate:
-                    gamestate['pingsound'].play()
+                if 'ping' in gamestate['sounds']:
+                    gamestate['sounds']['ping'].play()
                 ball.set_speed(p.check_ball(), self.calcspeed())
                 ball.color = p.color
 
