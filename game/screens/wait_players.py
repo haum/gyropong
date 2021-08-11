@@ -25,6 +25,8 @@ class WaitPlayersScreen(Screen):
         p1.opacity = 255 if p1here else 64
         p2.opacity = 255 if p2here else 64
 
+        gamestate['sprites']['haum'].rotation = 360 * self.a.value() + 90
+
         if not p1here or not p2here:
             self.timer_presence.stop()
             self.timer_presence.reset()
@@ -34,5 +36,5 @@ class WaitPlayersScreen(Screen):
            gamestate['game'].change_screen('match')
 
     def draw(self):
-        super().draw(['bg', 'board_tags', 'paddle1', 'paddle2'])
+        super().draw(['bg', 'board_tags', 'haum', 'paddle1', 'paddle2'])
 

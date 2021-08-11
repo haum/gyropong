@@ -49,6 +49,12 @@ imgBoardTags.anchor_y = imgBoardTags.height // 2
 sBoardTags = pyglet.sprite.Sprite(img=imgBoardTags, x=window.width//2, y=window.height//2)
 gamestate['sprites']['board_tags'] = sBoardTags
 
+imgHaum = pyglet.resource.image("haum.png")
+imgHaum.anchor_x = imgHaum.width // 2
+imgHaum.anchor_y = imgHaum.height // 2
+sHaum = pyglet.sprite.Sprite(img=imgHaum, x=window.width//2, y=window.height//2, subpixel=True)
+gamestate['sprites']['haum'] = sHaum
+
 imgPaddle = pyglet.resource.image("paddle.png")
 imgPaddle.anchor_x = 0
 imgPaddle.anchor_y = imgPaddle.height //2
@@ -85,6 +91,7 @@ def on_resize(width, height):
     scale = min(width, height)/min(imgBg.width, imgBg.height)
     sBg.update(x=width//2, y=height//2, scale=scale)
     sBoardTags.update(x=width//2, y=height//2, scale=scale)
+    sHaum.update(x=width//2, y=height//2, scale=scale)
     sPaddle1.scale = scale
     sPaddle2.scale = scale
     sBall.scale = scale
