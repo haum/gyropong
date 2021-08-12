@@ -13,6 +13,7 @@ class Match(Screen):
     def enter(self):
         self.timer_quit.start()
         self.playing = False
+        gamestate['sprites']['score'].reset()
 
     def calcspeed(self):
         return 100 + 300 * self.ballspeed.value()
@@ -46,13 +47,18 @@ class Match(Screen):
 
         # Start ball
         if not self.playing and p1here and p2here:
-            self.playing = True
-            self.ballspeed.reset()
-            self.ballspeed.start()
-            ball.reset()
-            ball.color = (255, 255, 255)
-            a = random() * 2 * pi
-            ball.set_speed(a, self.calcspeed())
+            if gamestate['sprites']['score'].is_full():
+                ball.reset()
+                ball.color = (255, 255, 255)
+                ball.set_speed(0, 0)
+            else:
+                self.playing = True
+                self.ballspeed.reset()
+                self.ballspeed.start()
+                ball.reset()
+                ball.color = (255, 255, 255)
+                a = random() * 2 * pi
+                ball.set_speed(a, self.calcspeed())
 
         # Ball out
         sw, sh = gamestate['window'].width, gamestate['window'].height
@@ -62,6 +68,7 @@ class Match(Screen):
             if not(ball.color[0] == 255 and ball.color[1] == 255 and ball.color[2] == 255):
                 if 'end' in gamestate['sounds']:
                     gamestate['sounds']['end'].play()
+                gamestate['sprites']['score'].add_point(ball.color)
 
         # Check pad touch
         if self.playing:
@@ -85,4 +92,4 @@ class Match(Screen):
                 ball.color = p.color
 
     def draw(self):
-        super().draw(['bg', 'paddle1', 'paddle2', 'ball'])
+        super().draw(['bg', 'score', 'paddle1', 'paddle2', 'ball'])

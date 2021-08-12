@@ -4,6 +4,7 @@ import argparse
 import pyglet
 import sprites.paddle
 import sprites.ball
+import sprites.score
 import tools.game_manager
 import tools.camera
 from tools import gamestate
@@ -71,6 +72,9 @@ imgBall.anchor_y = imgBall.height //2
 sBall = sprites.ball.Ball(img=imgBall, subpixel=True)
 gamestate['sprites']['ball'] = sBall
 
+sScore = sprites.score.Score(imgBall, window.width//2, window.height//2)
+gamestate['sprites']['score'] = sScore
+
 if not gamestate['args'].debug: # Sound strangely interfere with the debug window, so do not load it when enabled
     gamestate['sounds']['ping'] = pyglet.resource.media('ping.ogg', streaming=False)
     gamestate['sounds']['end'] = pyglet.resource.media('end.ogg', streaming=False)
@@ -93,6 +97,7 @@ def on_resize(width, height):
     sBg.update(x=width//2, y=height//2, scale=scale)
     sBoardTags.update(x=width//2, y=height//2, scale=scale)
     sHaum.update(x=width//2, y=height//2, scale=scale)
+    sScore.reset_position(width//2, height//2, scale)
     sPaddle1.scale = scale
     sPaddle2.scale = scale
     sBall.scale = scale
