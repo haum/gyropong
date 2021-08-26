@@ -23,30 +23,35 @@ class Match(Screen):
         ball.animate(dt)
         self.timer_quit.update(dt)
         self.ballspeed.update(dt)
+        threeplayers = gamestate['3players']
 
         # Drive paddles
         p1 = gamestate['sprites']['paddle1']
         p2 = gamestate['sprites']['paddle2']
+        p3 = gamestate['sprites']['paddle3']
         p1.drive(gamestate['angles'][0], dt)
         p2.drive(gamestate['angles'][1], dt)
+        p3.drive(gamestate['angles'][2], dt)
 
         # Display presence
         p1here = gamestate['angles'][0] != None
         p2here = gamestate['angles'][1] != None
+        p3here = gamestate['angles'][2] != None
         p1.opacity = 255 if p1here else 64
         p2.opacity = 255 if p2here else 64
+        p3.opacity = 255 if p3here else 64
 
         # Quit game
-        if p1here or p2here:
+        if p1here or p2here or (p3here and threeplayers):
             self.timer_quit.stop()
             self.timer_quit.reset()
-        if not p1here and not p2here:
+        if not p1here and not p2here and (not p3here or not threeplayers):
             self.timer_quit.resume()
         if self.timer_quit.value() == 1:
            gamestate['game'].change_screen('wait')
 
         # Start ball
-        if not self.playing and p1here and p2here:
+        if not self.playing and p1here and p2here and (p3here or not threeplayers):
             if gamestate['sprites']['score'].is_full():
                 ball.reset()
                 ball.color = (255, 255, 255)
@@ -74,16 +79,25 @@ class Match(Screen):
         if self.playing:
             p1ball = p1.check_ball()
             p2ball = p2.check_ball()
+            p3ball = p3.check_ball() if threeplayers else None
             p = None
-            if p1ball != None and p2ball != None:
-                if random() < 0.5:
-                    p = p1
+            if p1ball != None and p2ball != None and (p3ball != None or not threeplayers):
+                if threeplayers:
+                    r = random()
+                    if r < 0.33333: p = p1
+                    elif r > 0.66666: p = p2
+                    else: p = p3
                 else:
-                    p = p2
+                    if random() < 0.5:
+                        p = p1
+                    else:
+                        p = p2
             elif p1ball != None:
                 p = p1
             elif p2ball != None:
                 p = p2
+            elif p3ball != None:
+                p = p3
 
             if p:
                 if 'ping' in gamestate['sounds']:
@@ -93,3 +107,4 @@ class Match(Screen):
 
     def draw(self):
         super().draw(['bg', 'score', 'paddle1', 'paddle2', 'ball'])
+        if gamestate['3players']: super().draw(['paddle3'])

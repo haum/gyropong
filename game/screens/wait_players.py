@@ -18,12 +18,22 @@ class WaitPlayersScreen(Screen):
 
         p1 = gamestate['sprites']['paddle1']
         p2 = gamestate['sprites']['paddle2']
-        p1.set_angle(2 * pi * self.a.value())
-        p2.set_angle(2 * pi * self.a.value() + pi)
+        p3 = gamestate['sprites']['paddle3']
         p1here = gamestate['angles'][0] != None
         p2here = gamestate['angles'][1] != None
+        p3here = gamestate['angles'][2] != None
+        if not p3here:
+            gamestate['3players'] = False
+            p1.set_angle(2 * pi * self.a.value())
+            p2.set_angle(2 * pi * self.a.value() + pi)
+        else:
+            gamestate['3players'] = True
+            p1.set_angle(2 * pi * self.a.value())
+            p2.set_angle(2 * pi * self.a.value() + 2*pi/3)
+            p3.set_angle(2 * pi * self.a.value() + 4*pi/3)
         p1.opacity = 255 if p1here else 64
         p2.opacity = 255 if p2here else 64
+        p3.opacity = 255 if p3here else 64
 
         gamestate['sprites']['haum'].rotation = 360 * self.a.value() + 90
 
@@ -37,4 +47,5 @@ class WaitPlayersScreen(Screen):
 
     def draw(self):
         super().draw(['bg', 'board_tags', 'haum', 'paddle1', 'paddle2'])
+        if gamestate['3players']: super().draw(['paddle3'])
 

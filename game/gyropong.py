@@ -68,6 +68,9 @@ gamestate['sprites']['paddle1'] = sPaddle1
 sPaddle2 = sprites.paddle.Paddle(img=imgPaddle, subpixel=True)
 sPaddle2.color = (255, 255, 0)
 gamestate['sprites']['paddle2'] = sPaddle2
+sPaddle3 = sprites.paddle.Paddle(img=imgPaddle, subpixel=True)
+sPaddle3.color = (255, 0, 255)
+gamestate['sprites']['paddle3'] = sPaddle3
 
 imgBall = pyglet.resource.image("ball.png")
 imgBall.anchor_x = imgBall.width //2
@@ -103,6 +106,7 @@ def on_resize(width, height):
     sScore.reset_position(width//2, height//2, scale)
     sPaddle1.scale = scale
     sPaddle2.scale = scale
+    sPaddle3.scale = scale
     sBall.scale = scale
 
 @window.event
