@@ -17,8 +17,8 @@ class ARUcoCam(threading.Thread):
             pass
         self.debug = gamestate['args'].debug
         self.aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_50)
-        self.forced = [False, False]
-        self.angles = [None, None]
+        self.forced = [False, False, False]
+        self.angles = [None, None, None]
         self.running = True
 
     def run(self):
@@ -35,15 +35,19 @@ class ARUcoCam(threading.Thread):
             c = tuple(map(float, gamestate['args'].anchors.split(',')))
             if len(c) == 8:
                 anchors = [(c[0], c[1]), (c[2], c[3]), (c[4], c[5]), (c[6], c[7])]
-        currentanchor = 0
+        currentanchor = -1
         H = None
-        players = [None, None]
-        foundtime = [0, 0]
+        players = [None, None, None]
+        foundtime = [0, 0, 0]
         if self.debug:
             def evt(event, x, y, flags, userdata):
                 if event == cv2.EVENT_LBUTTONDOWN:
                     if flags & cv2.EVENT_FLAG_ALTKEY:
-                        anchors[currentanchor] = (x, y)
+                        if currentanchor == -1:
+                            userdata[2] = None if flags & cv2.EVENT_FLAG_CTRLKEY else (x, y)
+                            self.forced[2] = True
+                        else:
+                            anchors[currentanchor] = (x, y)
                     elif flags & cv2.EVENT_FLAG_SHIFTKEY:
                         userdata[0] = None if flags & cv2.EVENT_FLAG_CTRLKEY else (x, y)
                         self.forced[0] = True
@@ -58,7 +62,7 @@ class ARUcoCam(threading.Thread):
             if key & 0xFF in (ord('q'), -1, 27):
                 self.debug = False
                 cv2.destroyAllWindows()
-            elif key >= ord('1') and key <= ord('4'):
+            elif key >= ord('0') and key <= ord('4'):
                 currentanchor = key - ord('1')
 
             ret, frame = cap.read()
@@ -67,7 +71,7 @@ class ARUcoCam(threading.Thread):
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 corners, ids, _ = aruco.detectMarkers(gray, self.aruco_dict)
 
-                found = [False, False]
+                found = [False, False, False]
                 if type(ids) != type(None):
                     for i, c in zip(ids, corners):
                         i = i[0]
@@ -77,16 +81,21 @@ class ARUcoCam(threading.Thread):
                         )
                         if i < 4:
                             anchors[i] = center
-                        if i == 10:
+                        elif i == 10:
                             players[0] = center
                             found[0] = True
                             foundtime[0] = time.time()
                             self.forced[0] = False
-                        if i == 34:
+                        elif i == 34:
                             players[1] = center
                             found[1] = True
                             foundtime[1] = time.time()
                             self.forced[1] = False
+                        elif i == 42:
+                            players[2] = center
+                            found[2] = True
+                            foundtime[2] = time.time()
+                            self.forced[2] = False
 
                 anchors_lst = []
                 for a in anchors:
@@ -99,6 +108,8 @@ class ARUcoCam(threading.Thread):
                     players[0] = None
                 if not found[1] and not self.forced[1] and time.time() - foundtime[1] > 0.2:
                     players[1] = None
+                if not found[2] and not self.forced[2] and time.time() - foundtime[2] > 0.2:
+                    players[2] = None
 
             players_projected = players.copy()
             if type(H) != type(None):
@@ -108,10 +119,14 @@ class ARUcoCam(threading.Thread):
                 if type(players[1]) != type(None):
                     nc = cv2.perspectiveTransform(np.float32(((players[1][0], players[1][1]))).reshape(-1,1,2), H)
                     players_projected[1] = (nc[0][0][0], nc[0][0][1])
+                if type(players[2]) != type(None):
+                    nc = cv2.perspectiveTransform(np.float32(((players[2][0], players[2][1]))).reshape(-1,1,2), H)
+                    players_projected[2] = (nc[0][0][0], nc[0][0][1])
 
             angles = [
                 -atan2(players_projected[0][1], players_projected[0][0]) if players_projected[0] else None,
-                -atan2(players_projected[1][1], players_projected[1][0]) if players_projected[1] else None
+                -atan2(players_projected[1][1], players_projected[1][0]) if players_projected[1] else None,
+                -atan2(players_projected[2][1], players_projected[2][0]) if players_projected[2] else None,
             ]
 
             if self.debug:
@@ -134,6 +149,8 @@ class ARUcoCam(threading.Thread):
                     frame = cv2.circle(frame, tuple(map(int, players[0])), 4, (255,255,0), -1)
                 if players[1]:
                     frame = cv2.circle(frame, tuple(map(int, players[1])), 4, (0,255,255), -1)
+                if players[2]:
+                    frame = cv2.circle(frame, tuple(map(int, players[2])), 4, (255,0,255), -1)
                 frame = cv2.putText(
                     frame,
                     str(angles[0] * 180 / pi) if angles[0] else 'None',
