@@ -32,13 +32,16 @@ class ARUcoCam(threading.Thread):
                 time.sleep(2)
         anchors = [None, None, None, None]
         anchor0 = None
+        currentanchor = 0
         H = None
         players = [None, None]
         foundtime = [0, 0]
         if self.debug:
             def evt(event, x, y, flags, userdata):
                 if event == cv2.EVENT_LBUTTONDOWN:
-                    if flags & cv2.EVENT_FLAG_SHIFTKEY:
+                    if flags & cv2.EVENT_FLAG_ALTKEY:
+                        anchors[currentanchor] = (x, y)
+                    elif flags & cv2.EVENT_FLAG_SHIFTKEY:
                         userdata[0] = None if flags & cv2.EVENT_FLAG_CTRLKEY else (x, y)
                         self.forced[0] = True
                     else:
@@ -48,9 +51,12 @@ class ARUcoCam(threading.Thread):
             cv2.setMouseCallback('Camera debug', evt, players)
 
         while True:
-            if cv2.waitKey(1) & 0xFF in (ord('q'), -1, 27):
+            key = cv2.waitKey(1)
+            if key & 0xFF in (ord('q'), -1, 27):
                 self.debug = False
                 cv2.destroyAllWindows()
+            elif key >= ord('1') and key <= ord('4'):
+                currentanchor = key - ord('1')
 
             ret, frame = cap.read()
             corners = None
