@@ -31,6 +31,10 @@ class ARUcoCam(threading.Thread):
                 print('Camera not opened')
                 time.sleep(2)
         anchors = [None, None, None, None]
+        if gamestate['args'].anchors:
+            c = tuple(map(float, gamestate['args'].anchors.split(',')))
+            if len(c) == 8:
+                anchors = [(c[0], c[1]), (c[2], c[3]), (c[4], c[5]), (c[6], c[7])]
         anchor0 = None
         currentanchor = 0
         H = None
@@ -151,6 +155,9 @@ class ARUcoCam(threading.Thread):
                     break
                 self.angles = angles.copy()
                 self.lock.release()
+
+        if len(anchors_lst) == 8:
+            print('Anchors: ' + ','.join(str(a[0])+','+str(a[1]) for a in anchors if a))
 
         cap.release()
         cv2.destroyAllWindows()

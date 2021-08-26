@@ -21,6 +21,9 @@ parser.add_argument('-f --fullscreen', dest='fullscreen',
 parser.add_argument('-s --screen', dest='screen',
         default=0, type=int,
         help='Screen id')
+parser.add_argument('-a --anchors', dest='anchors',
+        default=None, type=str,
+        help='Anchor coordinates in camera image')
 gamestate['args'] = parser.parse_args()
 
 pyglet.resource.path = ['./resources']
