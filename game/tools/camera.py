@@ -35,7 +35,6 @@ class ARUcoCam(threading.Thread):
             c = tuple(map(float, gamestate['args'].anchors.split(',')))
             if len(c) == 8:
                 anchors = [(c[0], c[1]), (c[2], c[3]), (c[4], c[5]), (c[6], c[7])]
-        anchor0 = None
         currentanchor = 0
         H = None
         players = [None, None]
@@ -88,14 +87,6 @@ class ARUcoCam(threading.Thread):
                             found[1] = True
                             foundtime[1] = time.time()
                             self.forced[1] = False
-                    cx, cy, n = 0, 0, 0
-                    for p in anchors:
-                        if p:
-                            cx += p[0]
-                            cy += p[1]
-                            n += 1
-                    if n:
-                        anchor0 = (cx/n, cy/n)
 
                 anchors_lst = []
                 for a in anchors:
@@ -131,8 +122,14 @@ class ARUcoCam(threading.Thread):
                 for a in anchors:
                     if a:
                         frame = cv2.circle(frame, tuple(map(int, a)), 5, (255,0,0), -1)
-                if anchor0:
-                    frame = cv2.circle(frame, tuple(map(int, anchor0)), 4, (0,0,255), -1)
+                cx, cy, n = 0, 0, 0
+                for p in anchors:
+                    if p:
+                        cx += p[0]
+                        cy += p[1]
+                        n += 1
+                if n:
+                    frame = cv2.circle(frame, tuple(map(int, (cx/n, cy/n))), 4, (0,0,255), -1)
                 if players[0]:
                     frame = cv2.circle(frame, tuple(map(int, players[0])), 4, (255,255,0), -1)
                 if players[1]:
