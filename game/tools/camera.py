@@ -32,6 +32,7 @@ class ARUcoCam(threading.Thread):
                 time.sleep(2)
         anchors = [None, None, None, None]
         anchor0 = None
+        H = None
         players = [None, None]
         foundtime = [0, 0]
         if self.debug:
@@ -85,14 +86,35 @@ class ARUcoCam(threading.Thread):
                             n += 1
                     if n:
                         anchor0 = (cx/n, cy/n)
+
+                anchors_lst = []
+                for a in anchors:
+                    if a:
+                        anchors_lst.append(a[0])
+                        anchors_lst.append(a[1])
+                if len(anchors_lst) == 8:
+                    H, _ = cv2.findHomography(np.float32(anchors_lst).reshape(4,2), np.float32((0,0, 1,0, 1,1, 0,1)).reshape(4,2), None)
                 if not found[0] and not self.forced[0] and time.time() - foundtime[0] > 0.2:
                     players[0] = None
                 if not found[1] and not self.forced[1] and time.time() - foundtime[1] > 0.2:
                     players[1] = None
 
+            players_projected = players.copy()
+            anchor0_projected = None
+            if type(H) != type(None):
+                if type(players[0]) != type(None):
+                    nc = cv2.perspectiveTransform(np.float32(((players[0][0], players[0][1]))).reshape(-1,1,2), H)
+                    players_projected[0] = (nc[0][0][0], nc[0][0][1])
+                if type(players[1]) != type(None):
+                    nc = cv2.perspectiveTransform(np.float32(((players[1][0], players[1][1]))).reshape(-1,1,2), H)
+                    players_projected[1] = (nc[0][0][0], nc[0][0][1])
+                if type(anchor0) != type(None):
+                    nc = cv2.perspectiveTransform(np.float32(((anchor0[0], anchor0[1]))).reshape(-1,1,2), H)
+                    anchor0_projected = (nc[0][0][0], nc[0][0][1])
+
             angles = [
-                -atan2(players[0][1] - anchor0[1], players[0][0] - anchor0[0]) if anchor0 and players[0] else None,
-                -atan2(players[1][1] - anchor0[1], players[1][0] - anchor0[0]) if anchor0 and players[1] else None
+                -atan2(players_projected[0][1] - anchor0_projected[1], players_projected[0][0] - anchor0_projected[0]) if anchor0_projected and players_projected[0] else None,
+                -atan2(players_projected[1][1] - anchor0_projected[1], players_projected[1][0] - anchor0_projected[0]) if anchor0_projected and players_projected[1] else None
             ]
 
             if self.debug:
