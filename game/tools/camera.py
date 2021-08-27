@@ -11,6 +11,7 @@ class ARUcoCam(threading.Thread):
         super().__init__()
         self.lock = threading.Lock()
         self.cam = gamestate['args'].camera
+        self.screenshot_asked = False
         try:
             self.cam = int(self.cam)
         except:
@@ -129,7 +130,7 @@ class ARUcoCam(threading.Thread):
                 -atan2(players_projected[2][1], players_projected[2][0]) if players_projected[2] else None,
             ]
 
-            if self.debug:
+            if self.debug or self.screenshot_asked:
                 if corners != None:
                     frame = aruco.drawDetectedMarkers(frame, corners)
                 else:
@@ -161,7 +162,11 @@ class ARUcoCam(threading.Thread):
                     str(angles[1] * 180 / pi) if angles[1] else 'None',
                     (20,80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255)
                 )
-                cv2.imshow('Camera debug', frame)
+                if self.debug:
+                    cv2.imshow('Camera debug', frame)
+                if self.screenshot_asked:
+                    cv2.imwrite('screenshot.jpg', frame)
+                    self.screenshot_asked = False
 
             if self.lock.acquire():
                 if not self.running:
@@ -179,6 +184,11 @@ class ARUcoCam(threading.Thread):
     def stop(self):
         if self.lock.acquire():
             self.running = False
+            self.lock.release()
+
+    def screenshot(self):
+        if self.lock.acquire():
+            self.screenshot_asked = True
             self.lock.release()
 
     def get_angles(self):

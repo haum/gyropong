@@ -113,6 +113,8 @@ def on_resize(width, height):
 def on_key_press(symbol, modifiers):
     if symbol == ord('f'):
         window.set_fullscreen(not window.fullscreen)
+    elif symbol == ord('s'):
+        cam.screenshot()
 
 if __name__ == '__main__':
     pyglet.app.run()
