@@ -52,11 +52,7 @@ class Match(Screen):
 
         # Start ball
         if not self.playing and p1here and p2here and (p3here or not threeplayers):
-            if gamestate['sprites']['score'].is_full():
-                ball.reset()
-                ball.color = (255, 255, 255)
-                ball.set_speed(0, 0)
-            else:
+            if not gamestate['sprites']['score'].is_full():
                 self.playing = True
                 self.ballspeed.reset()
                 self.ballspeed.start()
@@ -74,6 +70,9 @@ class Match(Screen):
                 if 'end' in gamestate['sounds']:
                     gamestate['sounds']['end'].play()
                 gamestate['sprites']['score'].add_point(ball.color)
+                ball.reset()
+                ball.color = (255, 255, 255)
+                ball.set_speed(0, 0)
 
         # Check pad touch
         if self.playing:
