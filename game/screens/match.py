@@ -68,7 +68,7 @@ class Match(Screen):
         # Ball out
         sw, sh = gamestate['window'].width, gamestate['window'].height
         ss = min(sw, sh) * 0.48
-        if (ball.position[0] - sw/2)**2 + (ball.position[1] - sh/2)**2 > ss * ss:
+        if (ball.position[0] - sw/2)**2 + (ball.position[1] - sh/2)**2 > ss * ss and self.playing:
             self.playing = False
             if not(ball.color[0] == 255 and ball.color[1] == 255 and ball.color[2] == 255):
                 if 'end' in gamestate['sounds']:
