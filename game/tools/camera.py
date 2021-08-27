@@ -162,6 +162,11 @@ class ARUcoCam(threading.Thread):
                     str(angles[1] * 180 / pi) if angles[1] else 'None',
                     (20,80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255)
                 )
+                frame = cv2.putText(
+                    frame,
+                    str(angles[2] * 180 / pi) if angles[2] else 'None',
+                    (20,120), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255)
+                )
                 if self.debug:
                     cv2.imshow('Camera debug', frame)
                 if self.screenshot_asked:
