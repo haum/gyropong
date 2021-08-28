@@ -25,6 +25,7 @@ class Animator:
 
     def reset(self):
         self.t = 0
+        self.out = self.transfert(self.t)
 
     def running(self):
         return self.run
